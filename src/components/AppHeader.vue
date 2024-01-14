@@ -8,6 +8,7 @@ export default {
     },
     methods: {
 
+
     },
 
 }
@@ -21,7 +22,7 @@ export default {
             <div class="input-group input-group-sm mb-3 w-25">
               
               <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model="store.movieName">
-              <button class="btn btn-primary" @click="$emit(`search `)">Search</button>
+              <button class="btn btn-primary" @click="$emit(`search`)">Search</button>
             </div>
         </div>
 
