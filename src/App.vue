@@ -1,7 +1,8 @@
 <script>
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
-import { store } from './store'
+import { store } from './store';
+import axios from 'axios'
 
 export default {
   components: {
@@ -16,6 +17,16 @@ export default {
   },
   methods: {
     searchMovie() {
+      let apiUrl = store.endpointMovies + store.apiKey
+
+      if (store.movieName != '') {
+        apiUrl += `&query=${store.movieName}`
+      }
+
+      axios.get(apiUrl).then((response) => {
+        store.movieList = response.data.results
+        console.log(store.movieList)
+      })
 
     }
 
