@@ -54,11 +54,17 @@ export default {
                 <div class="cards-list mb-3">
                     
                     <div class="my-card" v-for="movie in store.movieList">
-                        <h2>{{movie.title}}</h2>
-                        <h6>{{movie.original_title}}</h6>
-                        <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
-                        <span class="ms-3">{{movie.original_language}}</span>
-                        <p>{{movie.vote_average}}</p>
+                        <div class="top-card">
+                            <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="" class="w-100">
+                        </div>
+                        <div class="bottom-card">
+
+                            <h2>{{movie.title}}</h2>
+                            <h6>{{movie.original_title}}</h6>
+                            <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
+                            <span class="ms-3">{{movie.original_language}}</span>
+                            <p>{{movie.vote_average}}</p>
+                        </div>
                         
                     </div>
                 </div>
@@ -72,11 +78,17 @@ export default {
                 <div class="cards-list mb-3">
                     
                     <div class="my-card" v-for="serie in store.tvSeriesList">
-                        <h2>{{serie.name}}</h2>
-                        <h6>{{serie.original_name}}</h6>
-                        <img :src="setFlag(serie.original_language)" alt="Bandiera" class="flag-icon">
-                        <span class="ms-3">{{serie.original_language}}</span>
-                        <p>{{serie.vote_average}}</p>
+                        <div class="top-card">
+                            <img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" alt="" class="w-100">
+                        </div>
+                        <div class="bottom-card">
+
+                            <h2>{{serie.name}}</h2>
+                            <h6>{{serie.original_name}}</h6>
+                            <img :src="setFlag(serie.original_language)" alt="Bandiera" class="flag-icon">
+                            <span class="ms-3">{{serie.original_language}}</span>
+                            <p>{{serie.vote_average}}</p>
+                        </div>
                         
                     </div>
                 </div>
@@ -93,18 +105,26 @@ export default {
 .cards-list {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 25%;
+    grid-auto-columns: 23%;
 
     overflow-x: auto;
 
     .my-card {
-        background-color: white;
-        padding: 30px;
         margin: 10px;
+        max-width: 100%;
 
-        .flag-icon {
-            max-width: 30px;
+        .bottom-card {
+
+            background-color: white;
+            padding: 30px;
+
+            .flag-icon {
+                max-width: 30px;
+            }
         }
+
+
+
 
 
     }
