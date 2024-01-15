@@ -6,6 +6,6 @@ export const store = reactive({
     apiKey: 'a4621505ed8c00f472a6b2c7247e5d63',
     movieList: [],
     tvseriesList: [],
-    movieName: '',
+    nameMovieAndTv: '',
 
 })

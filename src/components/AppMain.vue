@@ -1,10 +1,45 @@
 <script>
 import { store } from '../store'
-import '../../node_modules/flag-icons/css/flag-icons.css'
+
 export default {
     data() {
         return {
             store,
+        }
+    },
+    methods: {
+        setFlag(movie) {
+
+            const languageConversion = {
+
+                "zh": "cn",
+                "hi": "in",
+                "ar": "sa",
+                "pt": "br",
+                "bn": "bd",
+                "ru": "ru",
+                "ja": "jp",
+                "pa": "pk",
+                "mr": "in",
+                "de": "de",
+                "te": "in",
+                "fr": "fr",
+                "ms": "my",
+                "ko": "kr",
+                "vi": "vn",
+                "ta": "in",
+                "en": "gb",
+                "xh": "za"
+
+
+            };
+            let language = movie;
+
+            let country = languageConversion[language] || language;
+            console.log(language)
+            return `https://flagcdn.com/w580/${country}.webp`;
+        },
+        convertLanguageInFlag(language) {
 
         }
     },
@@ -26,7 +61,7 @@ export default {
                     <div class="my-card" v-for="movie in store.movieList">
                         <h2>{{movie.title}}</h2>
                         <h6>{{movie.original_title}}</h6>
-                        <img :src="`https://flagcdn.com/w580/${movie.original_language}.webp`" alt="Bandiera" class="flag-icon">
+                        <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
                         <span class="ms-3">{{movie.original_language}}</span>
                         <p>{{movie.vote_average}}</p>
                         
