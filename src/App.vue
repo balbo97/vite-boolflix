@@ -25,7 +25,7 @@ export default {
 
       axios.get(apiUrl).then((response) => {
         store.movieList = response.data.results
-        console.log(store.movieList)
+
       })
 
     }
