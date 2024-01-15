@@ -17,17 +17,17 @@ export default {
   },
   methods: {
     searchAll() {
-      console.log('prima si searchMovie');
+
       this.searchMovie()
-      console.log('dopo searchMovie');
+      this.searchTvSeries()
     },
 
     searchMovie() {
-      console.log('sono dentro searchmovie');
+
       let apiUrl = store.endpointMovies + store.apiKey
 
-      if (store.movieName != '') {
-        apiUrl += `&query=${store.movieNameAndTv}`
+      if (store.nameMovieAndTv !== '') {
+        apiUrl += `&query=${store.nameMovieAndTv}`
       }
 
       axios.get(apiUrl).then((response) => {
@@ -35,7 +35,22 @@ export default {
 
       })
 
+    },
+    searchTvSeries() {
+
+      let apiUrl = store.endpointTvSeries + store.apiKey
+      console.log(apiUrl)
+
+      if (store.nameMovieAndTv !== '') {
+        apiUrl += `&query=${store.nameMovieAndTv}`
+      }
+
+      axios.get(apiUrl).then((response) => {
+        store.tvSeriesList = response.data.results
+      })
     }
+
+
 
   },
 

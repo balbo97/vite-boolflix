@@ -23,25 +23,20 @@ export default {
                 "mr": "in",
                 "de": "de",
                 "te": "in",
-                "fr": "fr",
                 "ms": "my",
                 "ko": "kr",
                 "vi": "vn",
                 "ta": "in",
                 "en": "gb",
                 "xh": "za"
-
-
             };
             let language = movie;
-
             let country = languageConversion[language] || language;
-            console.log(language)
+
+
             return `https://flagcdn.com/w580/${country}.webp`;
         },
-        convertLanguageInFlag(language) {
 
-        }
     },
 
 
@@ -70,6 +65,26 @@ export default {
                                     
                 
             </div>
+
+            <div class="col-12 mt-5">
+                
+                <h1 v-if="store.tvSeriesList.length > 0">TV Series</h1>
+                <div class="cards-list mb-3">
+                    
+                    <div class="my-card" v-for="serie in store.tvSeriesList">
+                        <h2>{{serie.name}}</h2>
+                        <h6>{{serie.original_name}}</h6>
+                        <img :src="setFlag(serie.original_language)" alt="Bandiera" class="flag-icon">
+                        <span class="ms-3">{{serie.original_language}}</span>
+                        <p>{{serie.vote_average}}</p>
+                        
+                    </div>
+                </div>
+                                    
+                
+            </div>
+
+            
         </div>
     </div>
 </template>
