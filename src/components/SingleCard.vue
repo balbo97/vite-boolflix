@@ -1,21 +1,14 @@
 <script>
-import SingleCard from './SingleCard.vue';
-import SingleCardTv from './SingleCardTv.vue';
-import { store } from '../store'
-
 export default {
-    components: {
-        SingleCard,
-        SingleCardTv
-
-    },
     data() {
-        name: 'AppMain';
+        name: 'SingleCard';
         return {
-            store,
 
         }
     },
+    props: [
+        'movie'
+    ],
     methods: {
         setFlag(movie) {
 
@@ -53,48 +46,23 @@ export default {
 
     },
 
-
-
-
 }
 </script>
 
 <template lang="">
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
+    <div class="top-card">
+        <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="" class="w-100">
+    </div>
+    <div class="bottom-card">
 
-                
-                <h1 v-if="store.movieList.length > 0">Films</h1>
-                <div class="cards-list mb-3">
-                    
-                    <div class="my-card" v-for="movie in store.movieList">
-                        
-                        <SingleCard :movie="movie"/>
-                        
-                    </div>
-                </div>
-                                    
-                
-            </div>
+        <h2>{{movie.title}}</h2>
+        <h6>{{movie.original_title}}</h6>
+        <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
+        <span class="ms-3">{{movie.original_language}}</span>
+        <div class="div">
 
-            <div class="col-12 mt-5">
-                
-                <h1 v-if="store.tvSeriesList.length > 0">TV Series</h1>
-                <div class="cards-list mb-3">
-                    
-                    <div class="my-card" v-for="serie in store.tvSeriesList">
-
-                        <SingleCardTv :serie="serie" />
-                        
-                        
-                    </div>
-                </div>
-                                    
-                
-            </div>
-
-            
+            <i v-for="i in getStarRating(movie.vote_average / 2)" class="fas fa-star" ></i>
+            <i v-for="i in 5 - getStarRating(movie.vote_average / 2)" class="far fa-star" ></i>
         </div>
     </div>
 </template>
