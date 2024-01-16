@@ -36,6 +36,21 @@ export default {
 
             return `https://flagcdn.com/w580/${country}.webp`;
         },
+        roundVote(vote) {
+            return Math.round(vote);
+        },
+        getStarRating(vote) {
+
+            let starClasses = '';
+
+            for (let i = 0; i < 5; i++) {
+                starClasses += i < vote ? 'fas fa-star' : 'far fa-star';
+
+
+                starClasses += ' ';
+            }
+            return `<span class="${starClasses}"></span>`;
+        }
 
     },
 
@@ -63,7 +78,8 @@ export default {
                             <h6>{{movie.original_title}}</h6>
                             <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
                             <span class="ms-3">{{movie.original_language}}</span>
-                            <p>{{movie.vote_average}}</p>
+                            <p>{{roundVote(movie.vote_average / 2)}}</p>
+                            <p v-html="getStarRating(movie.vote_average / 2)"></p>
                         </div>
                         
                     </div>
