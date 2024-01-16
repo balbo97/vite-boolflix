@@ -68,8 +68,11 @@ export default {
                             <h6>{{movie.original_title}}</h6>
                             <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
                             <span class="ms-3">{{movie.original_language}}</span>
-                            <i v-for="i in getStarRating(movie.vote_average / 2)" class="fas fa-star" ></i>
-                            <i v-for="i in 5 - getStarRating(movie.vote_average / 2)" class="far fa-star" ></i>
+                            <div class="div">
+
+                                <i v-for="i in getStarRating(movie.vote_average / 2)" class="fas fa-star" ></i>
+                                <i v-for="i in 5 - getStarRating(movie.vote_average / 2)" class="far fa-star" ></i>
+                            </div>
                         </div>
                         
                     </div>
@@ -93,8 +96,11 @@ export default {
                             <h6>{{serie.original_name}}</h6>
                             <img :src="setFlag(serie.original_language)" alt="Bandiera" class="flag-icon">
                             <span class="ms-3">{{serie.original_language}}</span>
-                            <i v-for="i in getStarRating(serie.vote_average / 2)" class="fas fa-star" ></i>
-                            <i v-for="i in 5 - getStarRating(serie.vote_average / 2)" class="far fa-star" ></i>
+                            <div class="div">
+
+                                <i v-for="i in getStarRating(serie.vote_average / 2)" class="fas fa-star" ></i>
+                                <i v-for="i in 5 - getStarRating(serie.vote_average / 2)" class="far fa-star" ></i>
+                            </div>
                         </div>
                         
                     </div>
@@ -109,31 +115,96 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+// .cards-list {
+//     display: grid;
+//     grid-auto-flow: column;
+//     grid-auto-columns: 25%;
+
+//     overflow-x: auto;
+
+
+//     .my-card {
+//         margin: 2px;
+//         height: auto;
+
+
+//         .bottom-card {
+
+//             background-color: white;
+//             padding: 30px;
+
+//             .flag-icon {
+//                 max-width: 30px;
+//             }
+//         }
+
+
+
+
+
+//     }
+// }
+
 .cards-list {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 23%;
-
+    grid-auto-columns: 25%;
     overflow-x: auto;
+    height: 470px;
+
 
     .my-card {
         margin: 10px;
-        max-width: 100%;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .top-card,
+        .bottom-card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transition: transform 0.5s;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .top-card {
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
 
         .bottom-card {
-
+            transform: rotateY(180deg);
             background-color: white;
             padding: 30px;
+
 
             .flag-icon {
                 max-width: 30px;
             }
+
+            .div {
+                margin-top: 5px;
+
+
+                .fas,
+                .far {
+                    margin-right: 3px;
+                }
+            }
         }
 
+        &:hover {
+            .top-card {
+                transform: rotateY(-180deg);
+            }
 
-
-
-
+            .bottom-card {
+                transform: rotateY(0deg);
+            }
+        }
     }
 }
 </style>
