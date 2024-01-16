@@ -36,20 +36,10 @@ export default {
 
             return `https://flagcdn.com/w580/${country}.webp`;
         },
-        roundVote(vote) {
-            return Math.round(vote);
-        },
+
         getStarRating(vote) {
 
-            let starClasses = '';
-
-            for (let i = 0; i < 5; i++) {
-                starClasses += i < vote ? 'fas fa-star' : 'far fa-star';
-
-
-                starClasses += ' ';
-            }
-            return `<span class="${starClasses}"></span>`;
+            return Math.ceil(vote)
         }
 
     },
@@ -78,8 +68,8 @@ export default {
                             <h6>{{movie.original_title}}</h6>
                             <img :src="setFlag(movie.original_language)" alt="Bandiera" class="flag-icon">
                             <span class="ms-3">{{movie.original_language}}</span>
-                            <p>{{roundVote(movie.vote_average / 2)}}</p>
-                            <p v-html="getStarRating(movie.vote_average / 2)"></p>
+                            <i v-for="i in getStarRating(movie.vote_average / 2)" class="fas fa-star" ></i>
+                            <i v-for="i in 5 - getStarRating(movie.vote_average / 2)" class="far fa-star" ></i>
                         </div>
                         
                     </div>
@@ -103,7 +93,8 @@ export default {
                             <h6>{{serie.original_name}}</h6>
                             <img :src="setFlag(serie.original_language)" alt="Bandiera" class="flag-icon">
                             <span class="ms-3">{{serie.original_language}}</span>
-                            <p>{{serie.vote_average}}</p>
+                            <i v-for="i in getStarRating(serie.vote_average / 2)" class="fas fa-star" ></i>
+                            <i v-for="i in 5 - getStarRating(serie.vote_average / 2)" class="far fa-star" ></i>
                         </div>
                         
                     </div>
